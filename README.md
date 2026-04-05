@@ -1,8 +1,6 @@
+Nixon.Net
+--
 A set of packages containing frequently reused copy-pasted code
-
-⚠️ *OpenIddict.Template has been moved to [Nixon.OpenIddictFramework](https://github.com/nixonjoshua98/Nixon.OpenIddictFramework)*
-
----
 
 ## 📦 Packages
 
