@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace Nixon.ValueUnion;
 
 public enum ErrorType : byte
@@ -30,6 +33,20 @@ public sealed record ErrorValue(ErrorType ErrorType, string? Message)
     public static ErrorValue Forbidden(string? message = null)
     {
         return new ErrorValue(ErrorType.Forbidden, message);
+    }
+
+    internal IResult ToResult()
+    {
+        return Results.Problem(
+            detail: Message,
+            extensions: AdditionalValues,
+            statusCode: ErrorType switch
+            {
+                ErrorType.NotFound => StatusCodes.Status404NotFound,
+                ErrorType.ClientError => StatusCodes.Status400BadRequest,
+                ErrorType.Forbidden => StatusCodes.Status403Forbidden,
+                _ => StatusCodes.Status500InternalServerError
+            });
     }
     
 
