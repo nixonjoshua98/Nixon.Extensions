@@ -22,16 +22,13 @@ jobs:
           dotnet-version: '10.x.x'
 
       - name: Restore dependencies
-        run: |
-          dotnet restore Nixon.Net.slnx
+        run: dotnet restore Nixon.Net.slnx
 
       - name: Build solution
-        run: |
-          dotnet build Nixon.Net.slnx --configuration Release --no-restore
+        run: dotnet build Nixon.Net.slnx -c Release --no-restore
 
       - name: Run tests
-        run: |
-          dotnet test Nixon.Net.slnx --configuration Release --no-build
+        run: dotnet test Nixon.Net.slnx -c Release --no-build
 
       - name: Pack NuGet packages
         run: |

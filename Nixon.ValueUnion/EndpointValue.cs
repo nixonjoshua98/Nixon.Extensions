@@ -18,7 +18,16 @@ public sealed class EndpointValue<TValue> : ValueOr<TValue, ErrorValue>
     {
         return TryGetValue(out var value, out var error)
             ? value as IResult ?? Results.Ok(value)
-            : Results.Problem(error.ToProblemDetails());
+            : Results.Problem(
+                detail: error.Message, 
+                extensions: error.AdditionalValues,
+                statusCode: error.ErrorType switch
+                {
+                    ErrorType.NotFound => StatusCodes.Status404NotFound,
+                    ErrorType.ClientError => StatusCodes.Status400BadRequest,
+                    ErrorType.Forbidden => StatusCodes.Status403Forbidden,
+                    _ => StatusCodes.Status500InternalServerError
+                });
     }
 
 

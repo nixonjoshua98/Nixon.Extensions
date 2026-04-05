@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Nixon.ValueUnion;
 
 public enum ErrorType : byte
@@ -12,11 +9,11 @@ public enum ErrorType : byte
 
 public sealed record ErrorValue(ErrorType ErrorType, string? Message)
 {
-    private readonly Dictionary<string, object?> _additionalValues = [];
+    internal readonly Dictionary<string, object?> AdditionalValues = [];
 
     public ErrorValue WithValue(string key, object data)
     {
-        _additionalValues[key] = data;
+        AdditionalValues[key] = data;
         return this;
     }
 
@@ -33,22 +30,6 @@ public sealed record ErrorValue(ErrorType ErrorType, string? Message)
     public static ErrorValue Forbidden(string? message = null)
     {
         return new ErrorValue(ErrorType.Forbidden, message);
-    }
-    
-    internal ProblemDetails ToProblemDetails()
-    {
-        return new ProblemDetails
-        {
-            Detail = Message,
-            Extensions = _additionalValues,
-            Status = ErrorType switch
-            {
-                ErrorType.NotFound => StatusCodes.Status404NotFound,
-                ErrorType.ClientError => StatusCodes.Status400BadRequest,
-                ErrorType.Forbidden => StatusCodes.Status403Forbidden,
-                _ => StatusCodes.Status500InternalServerError
-            }
-        };
     }
     
 
