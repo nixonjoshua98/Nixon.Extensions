@@ -1,7 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <ItemGroup>
-      <ProjectReference Include="..\Nixon.Identity.OpenIddict.Extensions\Nixon.Identity.OpenIddict.Extensions.csproj" />
-    </ItemGroup>
-
-</Project>

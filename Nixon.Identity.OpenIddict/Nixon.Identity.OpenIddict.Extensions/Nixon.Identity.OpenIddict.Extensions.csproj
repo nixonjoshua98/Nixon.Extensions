@@ -1,8 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    
-    <ItemGroup>
-        <PackageReference Include="OpenIddict.AspNetCore"  />
-        <PackageReference Include="OpenIddict.EntityFrameworkCore" />
-    </ItemGroup>
-
-</Project>

@@ -1,11 +1,4 @@
 <Solution>
-  <Folder Name="/Nixon.Extensions/">
-    <Project Path="Nixon.Extensions/Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />
-  </Folder>
-  <Folder Name="/Nixon.Identity.Openiddict/">
-    <Project Path="Nixon.Identity.OpenIddict/Nixon.Identity.OpenIddict.Extensions/Nixon.Identity.OpenIddict.Extensions.csproj" />
-    <Project Path="Nixon.Identity.OpenIddict/Nixon.Identity.OpenIddict.Template/Nixon.Identity.OpenIddict.Template.csproj" />
-  </Folder>
   <Folder Name="/Props/">
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
@@ -13,4 +6,6 @@
   <Folder Name="/Workflows/">
     <File Path=".github/workflows/PublishNuget.yaml" />
   </Folder>
+  <Project Path="Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />
+  <Project Path="Nixon.Extensions.Hosting/Nixon.Extensions.Hosting.csproj" />
 </Solution>

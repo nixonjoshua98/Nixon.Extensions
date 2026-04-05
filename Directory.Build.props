@@ -21,15 +21,15 @@
 		<RepositoryUrl>https://github.com/nixonjoshua98/Nixon.Net</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>0.5.4</Version>
+		<Version>0.5.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\LICENSE.txt">
+		<None Include="..\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\..\README.md">
+		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

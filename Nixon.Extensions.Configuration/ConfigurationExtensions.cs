@@ -28,16 +28,13 @@ public static class ConfigurationExtensions
             return defaultValue;
         }
 
-        if (T.TryParse(value, CultureInfo.InvariantCulture, out var parsedValue))
-        {
-            return parsedValue;
-        }
-
-        throw new Exception($"Configuration key '{key}' was found but failed to be parsed");
+        return T.TryParse(value, CultureInfo.InvariantCulture, out var parsedValue) ? 
+            parsedValue : 
+            throw new Exception($"Configuration key '{key}' was found but failed to be parsed");
     }
     
-    public static string GetRequiredConnectionString(this IConfiguration configuration, string key) =>
-        GetRequiredValue(configuration, $"ConnectionStrings:{key}");
+    public static string GetRequiredConnectionString(this IConfiguration configuration, string key) => 
+        configuration.GetRequiredValue($"ConnectionStrings:{key}");
     
     public static string GetRequiredValue(this IConfiguration configuration, string key) =>
         configuration[key] ?? throw new Exception($"Configuration key missing '{key}'");
