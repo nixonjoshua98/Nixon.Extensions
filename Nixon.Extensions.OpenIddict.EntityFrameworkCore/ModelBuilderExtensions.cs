@@ -78,25 +78,25 @@ public static class ModelBuilderExtensions
         {
             for (var type = entity; type != null; type = type.BaseType)
             {
-                if (type.ClrType.Assembly == typeof(TApplication).Assembly)
+                if (type.ClrType == typeof(TApplication))
                 {
                     configureApplication?.Invoke(type);
                     break;
                 }
                 
-                if (type.ClrType.Assembly == typeof(TAuthorization).Assembly)
+                if (type.ClrType == typeof(TAuthorization))
                 {
                     configureAuthorization?.Invoke(type);
                     break;
                 }
                 
-                if (type.ClrType.Assembly == typeof(TScope).Assembly)
+                if (type.ClrType == typeof(TScope))
                 {
                     configureScope?.Invoke(type);
                     break;
                 }
                 
-                if (type.ClrType.Assembly == typeof(TToken).Assembly)
+                if (type.ClrType == typeof(TToken))
                 {
                     configureToken?.Invoke(type);
                     break;
