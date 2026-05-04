@@ -17,8 +17,8 @@
 	<PropertyGroup>
 		<Title>$(PackageId)</Title>
 		<Authors>Joshua Nixon</Authors>
-		<PackageProjectUrl>https://github.com/nixonjoshua98/Nixon.Net</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/nixonjoshua98/Nixon.Net</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/nixonjoshua98/Nixon.Extensions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nixonjoshua98/Nixon.Extensions</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<Version>0.6.3</Version>
