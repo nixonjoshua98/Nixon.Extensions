@@ -9,5 +9,6 @@
   <Project Path="Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />
   <Project Path="Nixon.Extensions.EntityFrameworkCore\Nixon.Extensions.EntityFrameworkCore.csproj" />
   <Project Path="Nixon.Extensions.Hosting/Nixon.Extensions.Hosting.csproj" />
+  <Project Path="Nixon.Serilog.AspNetCore.Extensions/Nixon.Serilog.AspNetCore.Extensions.csproj" />
   <Project Path="Nixon.ValueUnion\Nixon.ValueUnion.csproj" />
 </Solution>

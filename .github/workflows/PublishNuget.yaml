@@ -36,6 +36,7 @@ jobs:
           
           dotnet pack Nixon.Extensions.Hosting/Nixon.Extensions.Hosting.csproj                          -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj              -c Release --no-build -o ./dist
+          dotnet pack Nixon.Serilog.AspNetCore.Extensions/Nixon.Serilog.AspNetCore.Extensions.csproj    -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.EntityFrameworkCore/Nixon.Extensions.EntityFrameworkCore.csproj  -c Release --no-build -o ./dist
 
       - name: Push to NuGet.org
