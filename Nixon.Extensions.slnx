@@ -8,6 +8,7 @@
   </Folder>
   <Project Path="Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />
   <Project Path="Nixon.Extensions.EntityFrameworkCore\Nixon.Extensions.EntityFrameworkCore.csproj" />
+  <Project Path="Nixon.Extensions.OpenIddict.EntityFrameworkCore\Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj" />
   <Project Path="Nixon.Extensions.Serilog.AspNetCore\Nixon.Extensions.Serilog.AspNetCore.csproj" />
   <Project Path="Nixon.ValueUnion\Nixon.ValueUnion.csproj" />
 </Solution>
