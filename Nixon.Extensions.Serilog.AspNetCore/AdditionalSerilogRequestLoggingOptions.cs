@@ -1,7 +1,7 @@
 using Serilog.AspNetCore;
 using Serilog.Events;
 
-namespace Nixon.Serilog.AspNetCore.Extensions;
+namespace Nixon.Extensions.Serilog.AspNetCore;
 
 public sealed class AdditionalSerilogRequestLoggingOptions(RequestLoggingOptions options)
 {

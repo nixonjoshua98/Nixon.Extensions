@@ -5,7 +5,7 @@ using Serilog.Events;
 
 // ReSharper disable ConvertIfStatementToReturnStatement
 
-namespace Nixon.Serilog.AspNetCore.Extensions;
+namespace Nixon.Extensions.Serilog.AspNetCore;
 
 public static class ApplicationBuilderExtensions
 {
