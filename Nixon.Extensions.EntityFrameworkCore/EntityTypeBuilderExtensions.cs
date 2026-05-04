@@ -6,99 +6,90 @@ namespace Nixon.Extensions.EntityFrameworkCore;
 
 public static class EntityTypeBuilderExtensions
 {
-    extension<T>(EntityTypeBuilder<T> builder) where T : class
+    public static EntityTypeBuilder<T> HasIdentityKey<T>(this EntityTypeBuilder<T> builder, Expression<Func<T, object?>> keyExpression) where T : class
     {
-        public EntityTypeBuilder<T> HasIdentityKey(Expression<Func<T, object?>> keyExpression)
-        {
-            builder.HasKey(keyExpression);
-            builder.Property(keyExpression).UseIdentityAlwaysColumn();
-            return builder;
-        }
-
-        public EntityTypeBuilder<T> DefineOneToOne<TChild>(Expression<Func<T, TChild?>> property,
-            Expression<Func<TChild, object?>> foreignKey,
-            bool autoInclude = true,
-            DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where TChild : class
-        {
-            builder
-                .HasOne(property)
-                .WithOne()
-                .HasForeignKey(foreignKey)
-                .OnDelete(deleteBehavior);
-
-            builder
-                .Navigation(property)
-                .AutoInclude(autoInclude);
-
-            return builder;
-        }
-
-        public EntityTypeBuilder<T> DefineOneToMany<TChild>(Expression<Func<TChild, object?>> foreignKey,
-            DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where TChild : class
-        {
-            builder
-                .HasMany<TChild>()
-                .WithOne()
-                .HasForeignKey(foreignKey)
-                .OnDelete(deleteBehavior);
-
-            return builder;
-        }
+        builder.HasKey(keyExpression);
+        builder.Property(keyExpression).UseIdentityAlwaysColumn();
+        return builder;
     }
 
-    extension<T>(EntityTypeBuilder<T> builder) where T : class
+    public static EntityTypeBuilder<T> DefineOneToOne<T, TChild>(this EntityTypeBuilder<T> builder, Expression<Func<T, TChild?>> property,
+        Expression<Func<TChild, object?>> foreignKey,
+        bool autoInclude = true,
+        DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where T : class where TChild : class
     {
-        public EntityTypeBuilder<T> DefineOneToMany<TChild>(
-            Expression<Func<T, IEnumerable<TChild>?>> property,
-            Expression<Func<TChild, object?>> foreignKey,
-            bool autoInclude = true,
-            DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where TChild : class
-        {
-            builder
-                .HasMany(property)
-                .WithOne()
-                .HasForeignKey(foreignKey)
-                .OnDelete(deleteBehavior);
+        builder
+            .HasOne(property)
+            .WithOne()
+            .HasForeignKey(foreignKey)
+            .OnDelete(deleteBehavior);
 
-            builder
-                .Navigation(property)
-                .AutoInclude(autoInclude);
+        builder
+            .Navigation(property)
+            .AutoInclude(autoInclude);
 
-            return builder;
-        }
-
-        public EntityTypeBuilder<T> IncludeNavigation(
-            Expression<Func<T, object?>> property,
-            bool autoInclude)
-        {
-            builder
-                .Navigation(property)
-                .AutoInclude(autoInclude);
-
-            return builder;
-        }
-
-        public EntityTypeBuilder<T> DefineOneToMany<TChild>(
-            Expression<Func<T, IEnumerable<TChild>?>> property,
-            Expression<Func<TChild, T?>> inverseProperty,
-            Expression<Func<TChild, object?>> foreignKey,
-            bool autoInclude = true,
-            DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where TChild : class
-        {
-            builder
-                .HasMany(property)
-                .WithOne(inverseProperty)
-                .HasForeignKey(foreignKey)
-                .OnDelete(deleteBehavior);
-
-            builder
-                .Navigation(property)
-                .AutoInclude(autoInclude);
-
-            return builder;
-        }
+        return builder;
     }
-    
+
+    public static EntityTypeBuilder<T> DefineOneToMany<T, TChild>(this EntityTypeBuilder<T> builder, Expression<Func<TChild, object?>> foreignKey,
+        DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where T : class where TChild : class
+    {
+        builder
+            .HasMany<TChild>()
+            .WithOne()
+            .HasForeignKey(foreignKey)
+            .OnDelete(deleteBehavior);
+
+        return builder;
+    }
+
+    public static EntityTypeBuilder<T> DefineOneToMany<T, TChild>(this EntityTypeBuilder<T> builder, Expression<Func<T, IEnumerable<TChild>?>> property,
+        Expression<Func<TChild, object?>> foreignKey,
+        bool autoInclude = true,
+        DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where T : class where TChild : class
+    {
+        builder
+            .HasMany(property)
+            .WithOne()
+            .HasForeignKey(foreignKey)
+            .OnDelete(deleteBehavior);
+
+        builder
+            .Navigation(property)
+            .AutoInclude(autoInclude);
+
+        return builder;
+    }
+
+    public static EntityTypeBuilder<T> IncludeNavigation<T>(this EntityTypeBuilder<T> builder, Expression<Func<T, object?>> property,
+        bool autoInclude) where T : class
+    {
+        builder
+            .Navigation(property)
+            .AutoInclude(autoInclude);
+
+        return builder;
+    }
+
+    public static EntityTypeBuilder<T> DefineOneToMany<T, TChild>(this EntityTypeBuilder<T> builder, Expression<Func<T, IEnumerable<TChild>?>> property,
+        Expression<Func<TChild, T?>> inverseProperty,
+        Expression<Func<TChild, object?>> foreignKey,
+        bool autoInclude = true,
+        DeleteBehavior deleteBehavior = DeleteBehavior.Cascade) where T : class where TChild : class
+    {
+        builder
+            .HasMany(property)
+            .WithOne(inverseProperty)
+            .HasForeignKey(foreignKey)
+            .OnDelete(deleteBehavior);
+
+        builder
+            .Navigation(property)
+            .AutoInclude(autoInclude);
+
+        return builder;
+    }
+
     public static EntityTypeBuilder<TChild> DefineManyToOne<T, TChild>(
         this EntityTypeBuilder<TChild> builder,
         Expression<Func<TChild, T?>> referenceProperty,
