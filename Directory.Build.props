@@ -21,7 +21,7 @@
 		<RepositoryUrl>https://github.com/nixonjoshua98/Nixon.Extensions</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>10.0.1</Version>
+		<Version>10.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
