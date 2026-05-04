@@ -9,7 +9,7 @@ namespace Nixon.Extensions.OpenIddict.EntityFrameworkCore;
 
 public static class ModelBuilderExtensions
 {
-    public static void UseOpenIddict(
+    public static void ConfigureOpenIddict(
         this ModelBuilder modelBuilder,
         string schemaName,
         string applicationTableName,
@@ -17,7 +17,7 @@ public static class ModelBuilderExtensions
         string scopeTableName,
         string tokenTableName)
     {
-        modelBuilder.UseOpenIddict(
+        modelBuilder.ConfigureOpenIddict(
             application =>
             {
                 application.SetSchema(schemaName);
@@ -41,14 +41,14 @@ public static class ModelBuilderExtensions
         );
     }
 
-    public static void UseOpenIddict(
+    public static void ConfigureOpenIddict(
         this ModelBuilder modelBuilder,
         Action<IMutableEntityType>? configureApplication = null,
         Action<IMutableEntityType>? configureAuthorization = null,
         Action<IMutableEntityType>? configureScope = null,
         Action<IMutableEntityType>? configureToken = null)
     {
-        modelBuilder.UseOpenIddict<
+        modelBuilder.ConfigureOpenIddict<
             OpenIddictEntityFrameworkCoreApplication,
             OpenIddictEntityFrameworkCoreAuthorization,
             OpenIddictEntityFrameworkCoreScope,
@@ -62,7 +62,7 @@ public static class ModelBuilderExtensions
         );
     }
     
-    public static void UseOpenIddict<TApplication, TAuthorization, TScope, TToken, TKey>(
+    public static void ConfigureOpenIddict<TApplication, TAuthorization, TScope, TToken, TKey>(
         this ModelBuilder modelBuilder,
         Action<IMutableEntityType>? configureApplication = null,
         Action<IMutableEntityType>? configureAuthorization = null,
@@ -74,8 +74,6 @@ public static class ModelBuilderExtensions
         where TToken : OpenIddictEntityFrameworkCoreToken<TKey, TApplication, TAuthorization>
         where TKey : IEquatable<TKey>
     {
-        modelBuilder.UseOpenIddict();
-        
         foreach (var entity in modelBuilder.Model.GetEntityTypes())
         {
             for (var type = entity; type != null; type = type.BaseType)
