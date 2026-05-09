@@ -31,15 +31,10 @@ jobs:
         run: dotnet test Nixon.Extensions.slnx -c Release --no-build
 
       - name: Pack NuGet packages
-        run: |
-          dotnet pack Nixon.ValueUnion/Nixon.ValueUnion.csproj -c Release --no-build -o ./dist
-          
+        run: |         
           dotnet pack Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj                                    -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.Serilog.AspNetCore/Nixon.Extensions.Serilog.AspNetCore.csproj                          -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.EntityFrameworkCore/Nixon.Extensions.EntityFrameworkCore.csproj                        -c Release --no-build -o ./dist
-          
-          dotnet pack Nixon.Extensions.OpenIddict/Nixon.Extensions.OpenIddict.csproj                                          -c Release --no-build -o ./dist
-          dotnet pack Nixon.Extensions.OpenIddict.EntityFrameworkCore/Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj  -c Release --no-build -o ./dist
 
       - name: Push to NuGet.org
         run: |
