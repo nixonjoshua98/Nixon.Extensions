@@ -9,7 +9,7 @@ namespace Nixon.Extensions.Serilog.AspNetCore;
 
 public static class ApplicationBuilderExtensions
 {
-    public static T UseAdditionalSerilogRequestLogging<T>(
+    public static T UseOpinionatedSerilogRequestLogging<T>(
         this T app, 
         Action<AdditionalSerilogRequestLoggingOptions>? configure = null) 
         where T : IApplicationBuilder
