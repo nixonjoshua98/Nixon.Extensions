@@ -6,13 +6,6 @@ namespace Nixon.Extensions.EntityFrameworkCore;
 
 public static class EntityTypeBuilderExtensions
 {
-    public static EntityTypeBuilder<T> HasIdentityKey<T>(this EntityTypeBuilder<T> builder, Expression<Func<T, object?>> keyExpression) where T : class
-    {
-        builder.HasKey(keyExpression);
-        builder.Property(keyExpression).UseIdentityAlwaysColumn();
-        return builder;
-    }
-
     public static EntityTypeBuilder<T> DefineOneToOne<T, TChild>(this EntityTypeBuilder<T> builder, Expression<Func<T, TChild?>> property,
         Expression<Func<TChild, object?>> foreignKey,
         bool autoInclude = true,

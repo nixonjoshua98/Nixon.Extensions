@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <Version>10.0.5</Version>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="Serilog.AspNetCore" />
     </ItemGroup>

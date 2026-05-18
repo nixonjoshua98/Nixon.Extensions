@@ -9,7 +9,9 @@ namespace Nixon.Extensions.Serilog.AspNetCore;
 
 public static class ApplicationBuilderExtensions
 {
-    public static T UseRequestLogging<T>(this T app, Action<AdditionalSerilogRequestLoggingOptions>? configure = null) 
+    public static T UserSerilogRequestLoggingWithAdditionalOptions<T>(
+        this T app, 
+        Action<AdditionalSerilogRequestLoggingOptions>? configure = null) 
         where T : IApplicationBuilder
     {
         app.UseSerilogRequestLogging(opts =>
@@ -50,7 +52,7 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
             return _exceptionLogLevel;
         }
 
-        if (ctx.Response.StatusCode is < 200 or >= 300)
+        if (ctx.Response.StatusCode is >= 200 and < 300)
         {
             return _successfulResponseLogLevel;
         }

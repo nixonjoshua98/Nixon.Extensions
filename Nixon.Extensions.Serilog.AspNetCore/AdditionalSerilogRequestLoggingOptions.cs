@@ -11,7 +11,7 @@ public sealed class AdditionalSerilogRequestLoggingOptions(RequestLoggingOptions
     
     public LogEventLevel SuccessfulResponseLogLevel { get; set; } = LogEventLevel.Information;
     
-    public LogEventLevel HealthCheckLogLevel { get; set; } = LogEventLevel.Information;
+    public LogEventLevel HealthCheckLogLevel { get; set; } = LogEventLevel.Debug;
     
     public LogEventLevel DefaultLogLevel { get; set; } = LogEventLevel.Information;
 }
