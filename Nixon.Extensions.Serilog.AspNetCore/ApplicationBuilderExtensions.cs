@@ -40,7 +40,7 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
     {
         var endpoint = ctx.GetEndpoint();
 
-        if (endpoint is null || string.IsNullOrEmpty(endpoint.DisplayName)) return true;
+        if (endpoint is null || string.IsNullOrEmpty(endpoint.DisplayName)) return false;
 
         return endpoint.DisplayName.Contains("health check", StringComparison.OrdinalIgnoreCase);
     }
