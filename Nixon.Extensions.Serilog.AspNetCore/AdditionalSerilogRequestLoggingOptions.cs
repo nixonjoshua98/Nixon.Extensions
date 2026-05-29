@@ -7,7 +7,7 @@ public sealed class AdditionalSerilogRequestLoggingOptions(RequestLoggingOptions
 {
     public RequestLoggingOptions Options { get; } = options;
     
-    public LogEventLevel ExceptionLogLevel { get; set; } = LogEventLevel.Error;
+    public LogEventLevel ErrorLogLevel { get; set; } = LogEventLevel.Error;
     
     public LogEventLevel SuccessfulResponseLogLevel { get; set; } = LogEventLevel.Information;
     

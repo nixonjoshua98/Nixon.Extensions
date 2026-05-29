@@ -32,7 +32,7 @@ public static class ApplicationBuilderExtensions
 file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOptions options)
 {
     private readonly LogEventLevel _defaultLogLevel = options.DefaultLogLevel;
-    private readonly LogEventLevel _exceptionLogLevel = options.ExceptionLogLevel;
+    private readonly LogEventLevel _errorLogLevel = options.ErrorLogLevel;
     private readonly LogEventLevel _healthCheckLogLevel = options.HealthCheckLogLevel;
     private readonly LogEventLevel _successfulResponseLogLevel = options.SuccessfulResponseLogLevel;
 
@@ -47,9 +47,9 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
 
     public LogEventLevel GetLogEventLevel(HttpContext ctx, double _, Exception? ex)
     {
-        if (ex is not null)
+        if (ex is not null || ctx.Response.StatusCode >= 400)
         {
-            return _exceptionLogLevel;
+            return _errorLogLevel;
         }
 
         if (ctx.Response.StatusCode is >= 200 and < 300)
