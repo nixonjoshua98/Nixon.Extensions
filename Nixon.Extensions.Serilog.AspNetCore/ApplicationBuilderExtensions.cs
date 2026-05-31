@@ -51,15 +51,15 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
         {
             return _errorLogLevel;
         }
-
-        if (ctx.Response.StatusCode is >= 200 and < 300)
-        {
-            return _successfulResponseLogLevel;
-        }
         
         if (IsHealthCheck(ctx))
         {
             return _healthCheckLogLevel;
+        }
+
+        if (ctx.Response.StatusCode is >= 200 and < 300)
+        {
+            return _successfulResponseLogLevel;
         }
 
         return _defaultLogLevel;
