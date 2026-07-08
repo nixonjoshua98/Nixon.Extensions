@@ -4,6 +4,7 @@
     <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/Workflows/">
+    <File Path="..\.github\workflows\PublishNuget.yaml" />
     <File Path=".github/workflows/PublishNuget.yaml" />
   </Folder>
   <Project Path="Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />

@@ -7,11 +7,12 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>10.0.12</Version>
+        <Version>10.0.7</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
 
 </Project>
