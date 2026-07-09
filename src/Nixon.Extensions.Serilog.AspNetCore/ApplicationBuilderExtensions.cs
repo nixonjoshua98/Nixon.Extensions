@@ -41,7 +41,7 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
         var endpoint = ctx.GetEndpoint();
 
         if (endpoint is null || string.IsNullOrEmpty(endpoint.DisplayName)) return false;
-
+        
         return endpoint.DisplayName.Contains("health check", StringComparison.OrdinalIgnoreCase);
     }
 
@@ -53,6 +53,11 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
         }
         
         if (IsHealthCheck(ctx))
+        {
+            return _healthCheckLogLevel;
+        }
+
+        if (ctx.Request.Path.StartsWithSegments("/metrics"))
         {
             return _healthCheckLogLevel;
         }
