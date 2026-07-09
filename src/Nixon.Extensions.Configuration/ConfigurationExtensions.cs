@@ -18,6 +18,12 @@ public static class ConfigurationExtensions
 
         return instance;
     }
+
+    public static bool TryGetValue<T>(this IConfiguration configuration, string key, [MaybeNullWhen(false)] out T value)
+        where T : IParsable<T>
+    {
+        return T.TryParse(configuration[key], CultureInfo.InvariantCulture, out value);
+    }
     
     public static T GetValueOrDefault<T>(this IConfiguration configuration, string key, T defaultValue = default!) where T : IParsable<T>
     {
