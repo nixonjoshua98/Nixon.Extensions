@@ -7,33 +7,35 @@ on:
     types:
       - published
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 3
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.x.x'
 
-      - name: Restore dependencies
+      - name: Restore Dependencies
         working-directory: ./src
         run: dotnet restore Nixon.Extensions.slnx
 
-      - name: Build solution
+      - name: Build Solution
         working-directory: ./src
         run: dotnet build Nixon.Extensions.slnx -c Release --no-restore
 
-      - name: Run tests
+      - name: Run Tests
         working-directory: ./src
         run: dotnet test Nixon.Extensions.slnx -c Release --no-build
 
-      - name: Pack NuGet packages
+      - name: Pack Packages
         working-directory: ./src
         run: |         
           dotnet pack Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj              -c Release --no-build -o ./dist
