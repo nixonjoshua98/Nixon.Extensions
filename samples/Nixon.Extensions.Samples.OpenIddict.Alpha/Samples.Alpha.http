@@ -1,0 +1,18 @@
+@HostAddress = http://localhost:5119
+
+POST {{HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=client-id&grant_type=test-grant-type
+
+###
+
+POST {{HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=client-flow-client&
+client_secret=client-flow-secret&
+grant_type=client_credentials&
+scope=offline_access
+
+###

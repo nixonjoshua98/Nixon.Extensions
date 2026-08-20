@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -39,8 +39,21 @@ jobs:
           dotnet pack Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj              -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.Serilog.AspNetCore/Nixon.Extensions.Serilog.AspNetCore.csproj    -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.EntityFrameworkCore/Nixon.Extensions.EntityFrameworkCore.csproj  -c Release --no-build -o ./dist
+          dotnet pack Nixon.Extensions.Hosting.Jobs/Nixon.Extensions.Hosting.Jobs.csproj                -c Release --no-build -o ./dist
+          
+          dotnet pack Nixon.Extensions.OpenIddict/Nixon.Extensions.OpenIddict.csproj                                          -c Release --no-build -o ./dist
+          dotnet pack Nixon.Extensions.OpenIddict.EntityFrameworkCore/Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj  -c Release --no-build -o ./dist
+
+      - name: NuGet OIDC Login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: nixonjoshua98
 
       - name: Push to NuGet.org
         working-directory: ./src
         run: |
-          dotnet nuget push "./dist/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push "./dist/*.nupkg" \
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }}  \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

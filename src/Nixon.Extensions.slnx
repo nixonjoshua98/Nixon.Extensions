@@ -8,5 +8,8 @@
   </Folder>
   <Project Path="Nixon.Extensions.Configuration/Nixon.Extensions.Configuration.csproj" />
   <Project Path="Nixon.Extensions.EntityFrameworkCore\Nixon.Extensions.EntityFrameworkCore.csproj" />
+  <Project Path="Nixon.Extensions.Hosting.Jobs/Nixon.Extensions.Hosting.Jobs.csproj" />
+  <Project Path="Nixon.Extensions.OpenIddict.EntityFrameworkCore/Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj" />
+  <Project Path="Nixon.Extensions.OpenIddict/Nixon.Extensions.OpenIddict.csproj" />
   <Project Path="Nixon.Extensions.Serilog.AspNetCore\Nixon.Extensions.Serilog.AspNetCore.csproj" />
 </Solution>

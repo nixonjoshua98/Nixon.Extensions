@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Folder/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="Nixon.Extensions.Samples.Hosting.Jobs.Alpha\Nixon.Extensions.Samples.Hosting.Jobs.Alpha.csproj" />
+  <Project Path="Nixon.Extensions.Samples.OpenIddict.Alpha\Nixon.Extensions.Samples.OpenIddict.Alpha.csproj" />
+</Solution>

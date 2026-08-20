@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Nixon.Extensions.OpenIddict.EntityFrameworkCore\Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj" />
+      <ProjectReference Include="..\Nixon.Extensions.OpenIddict\Nixon.Extensions.OpenIddict.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+    </ItemGroup>
+
+</Project>

@@ -1,11 +1,13 @@
 <Project>
-	
+
 	<PropertyGroup>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<Configurations>Debug;Release</Configurations>
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -15,6 +17,10 @@
 		<RepositoryUrl>https://github.com/nixonjoshua98/Nixon.Extensions</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>10.0.20</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,5 +33,4 @@
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
-	
 </Project>
