@@ -46,8 +46,7 @@ jobs:
           dotnet pack Nixon.Extensions.OpenIddict/Nixon.Extensions.OpenIddict.csproj                                          -c Release --no-build -o ./dist
           dotnet pack Nixon.Extensions.OpenIddict.EntityFrameworkCore/Nixon.Extensions.OpenIddict.EntityFrameworkCore.csproj  -c Release --no-build -o ./dist
 
-      - name: NuGet OIDC Login
-        uses: NuGet/login@v1
+      - uses: NuGet/login@v1
         id: login
         with:
           user: ${{ secrets.NUGET_USER }}
