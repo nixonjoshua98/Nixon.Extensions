@@ -31,10 +31,13 @@ public static class ApplicationBuilderExtensions
 
 file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOptions options)
 {
-    private readonly LogEventLevel _defaultLogLevel = options.DefaultLogLevel;
     private readonly LogEventLevel _errorLogLevel = options.ErrorLogLevel;
+    private readonly LogEventLevel _defaultLogLevel = options.DefaultLogLevel;
+    private readonly LogEventLevel _metricsLogLevel = options.MetricsLogLevel;
     private readonly LogEventLevel _healthCheckLogLevel = options.HealthCheckLogLevel;
     private readonly LogEventLevel _successfulResponseLogLevel = options.SuccessfulResponseLogLevel;
+    
+    private readonly Func<HttpRequest, bool> _metricsPredicate = options.MetricsPredicate;
 
     private static bool IsHealthCheck(HttpContext ctx)
     {
@@ -57,9 +60,9 @@ file sealed class SerilogRequestLoggerHelper(AdditionalSerilogRequestLoggingOpti
             return _healthCheckLogLevel;
         }
 
-        if (ctx.Request.Path.StartsWithSegments("/metrics"))
+        if (_metricsPredicate(ctx.Request))
         {
-            return _healthCheckLogLevel;
+            return _metricsLogLevel;
         }
 
         if (ctx.Response.StatusCode is >= 200 and < 300)

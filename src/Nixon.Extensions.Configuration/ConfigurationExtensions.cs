@@ -4,44 +4,45 @@ using Microsoft.Extensions.Configuration;
 
 namespace Nixon.Extensions.Configuration;
 
-[SuppressMessage("ReSharper", "ConvertToExtensionBlock")]
-[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public static class ConfigurationExtensions
 {
-    public static T GetRequiredSection<T>(this IConfiguration configuration, string sectionName) where T : class, new()
+    extension(IConfiguration configuration)
     {
-        T instance = new();
-
-        var section = configuration.GetRequiredSection(sectionName);
-
-        section.Bind(instance);
-
-        return instance;
-    }
-
-    public static bool TryGetValue<T>(this IConfiguration configuration, string key, [MaybeNullWhen(false)] out T value)
-        where T : IParsable<T>
-    {
-        return T.TryParse(configuration[key], CultureInfo.InvariantCulture, out value);
-    }
-    
-    public static T GetValueOrDefault<T>(this IConfiguration configuration, string key, T defaultValue = default!) where T : IParsable<T>
-    {
-        var value = configuration[key];
-
-        if (string.IsNullOrEmpty(value))
+        public T GetRequiredSection<T>(string sectionName) where T : class, new()
         {
-            return defaultValue;
+            T instance = new();
+
+            var section = configuration.GetRequiredSection(sectionName);
+
+            section.Bind(instance);
+
+            return instance;
         }
 
-        return T.TryParse(value, CultureInfo.InvariantCulture, out var parsedValue) ? 
-            parsedValue : 
-            throw new Exception($"Configuration key '{key}' was found but failed to be parsed");
+        public bool TryGetValue<T>(string key, [MaybeNullWhen(false)] out T value)
+            where T : IParsable<T>
+        {
+            return T.TryParse(configuration[key], CultureInfo.InvariantCulture, out value);
+        }
+
+        public T GetValueOrDefault<T>(string key, T defaultValue = default!) where T : IParsable<T>
+        {
+            var value = configuration[key];
+
+            if (string.IsNullOrEmpty(value))
+            {
+                return defaultValue;
+            }
+
+            return T.TryParse(value, CultureInfo.InvariantCulture, out var parsedValue) ? 
+                parsedValue : 
+                throw new Exception($"Configuration key '{key}' was found but failed to be parsed");
+        }
+
+        public string GetRequiredConnectionString(string key) => 
+            configuration.GetRequiredValue($"ConnectionStrings:{key}");
+
+        public string GetRequiredValue(string key) =>
+            configuration[key] ?? throw new Exception($"Configuration key missing '{key}'");
     }
-    
-    public static string GetRequiredConnectionString(this IConfiguration configuration, string key) => 
-        configuration.GetRequiredValue($"ConnectionStrings:{key}");
-    
-    public static string GetRequiredValue(this IConfiguration configuration, string key) =>
-        configuration[key] ?? throw new Exception($"Configuration key missing '{key}'");
 }

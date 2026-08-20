@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Serilog.AspNetCore;
 using Serilog.Events;
 
@@ -14,4 +15,9 @@ public sealed class AdditionalSerilogRequestLoggingOptions(RequestLoggingOptions
     public LogEventLevel HealthCheckLogLevel { get; set; } = LogEventLevel.Debug;
     
     public LogEventLevel DefaultLogLevel { get; set; } = LogEventLevel.Information;
+    
+    public LogEventLevel MetricsLogLevel { get; set; } = LogEventLevel.Debug;
+
+    public Func<HttpRequest, bool> MetricsPredicate { get; set; } =
+        static r => r.Path.StartsWithSegments("/metrics");
 }
